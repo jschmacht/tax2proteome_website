@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ConfigService} from "../config.service";
+import {ConfigService} from '../config.service';
 
 @Component({
   selector: 'app-result-page',
@@ -7,10 +7,10 @@ import {ConfigService} from "../config.service";
   styleUrls: ['./result-page.component.css']
 })
 export class ResultPageComponent implements OnInit {
-  db_id: string;
-  status: string = "";
+  dbId: string;
+  status = '';
   ready: boolean = false;
-  result_url:string = "https://tax2proteome.de/downloader/";
+  resultUrl = 'https://tax2proteome.de/downloader/';
 
   @ViewChild('bindingInput') bindingInput: ElementRef;
 
@@ -22,31 +22,31 @@ export class ResultPageComponent implements OnInit {
   }
 
   getDownloadLink() {
-    this.db_id = this.configService.result_link
-    return this.db_id
+    this.dbId = this.configService.resultLink;
+    return this.dbId;
   }
 
-  setDownloadUrl(db_id){
-    this.result_url = "https://tax2proteome.de/downloader/" + db_id;
+  setDownloadUrl(dbId){
+    this.resultUrl = 'https://tax2proteome.de/downloader/' + dbId;
     this.getDownloadUrl();
   }
 
   getDownloadUrl(){
-    //console.log(this.result_url)
-    return this.result_url;
+    // console.log(this.result_url)
+    return this.resultUrl;
   }
 
   CheckProgress() {
-    this.db_id = this.bindingInput.nativeElement.value.trim();
-    this.configService.getProgress(this.db_id).catch((err) => console.log('error: ', err));
-    this.setDownloadUrl(this.db_id)
+    this.dbId = this.bindingInput.nativeElement.value.trim();
+    this.configService.getProgress(this.dbId).catch((err) => console.log('error: ', err));
+    this.setDownloadUrl(this.dbId);
     setTimeout(() =>
         {
-          this.status = this.configService.status
+          this.status = this.configService.status;
           if (this.status.startsWith('status 01')){
             this.ready = true;
           }
-          return this.status
+          return this.status;
         },
         1000);
   }

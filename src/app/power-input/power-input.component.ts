@@ -3,8 +3,6 @@ import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 import { Output, EventEmitter } from '@angular/core';
-import {TaxTableComponent} from "../tax-table/tax-table.component";
-import {UserInputService} from "../user-input.service";
 
 @Component({
   selector: 'app-power-input',
@@ -17,9 +15,8 @@ export class PowerInputComponent implements OnInit {
     isLoading = false;
     errorMsg: string;
 
-    private url = "https://tax2proteome.de/api/query.php?q="
-    //private url = "http://autocomplete.tax2proteome.de/query.php?q="
-    //private url =  "http:///localhost:8000/tax2proteome/rest_tax2proteome/query.php?q="
+    private url = 'https://tax2proteome.de/api/query.php?q=';
+    // private url =  "http:///localhost:8000/tax2proteome/rest_tax2proteome/query.php?q="
     @Output() messageEvent = new EventEmitter<string>();
 
     constructor(
@@ -32,11 +29,11 @@ export class PowerInputComponent implements OnInit {
             .pipe(
                 debounceTime(500),
                 tap(() => {
-                    this.errorMsg = "";
+                    this.errorMsg = '';
                     this.filteredTaxa = [];
                     this.isLoading = true;
                 }),
-                switchMap(value => this.http.get( this.url + value + "&limit=5")
+                switchMap(value => this.http.get( this.url + value + '&limit=5')
                     .pipe(
                         finalize(() => {
                             this.isLoading = false
@@ -45,7 +42,7 @@ export class PowerInputComponent implements OnInit {
                 )
             )
             .subscribe(data => {
-                this.errorMsg = "";
+                this.errorMsg = '';
                 this.filteredTaxa = data;
             });
     }

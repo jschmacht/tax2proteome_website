@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import{TaxTableComponent} from "../tax-table/tax-table.component";
-import {NamesService} from "../names.service";
+import {TaxTableComponent} from '../tax-table/tax-table.component';
+import {NamesService} from '../names.service';
 
 
 @Component({
@@ -21,6 +21,6 @@ export class ListInputComponent implements OnInit {
 
   getTaxIDValue(): any {
     const splitted = this.bindingInput.nativeElement.value.split(/\s*[,;]\s*|\s/).map(Number).filter(Boolean);
-    this.namesService.getNames(splitted).catch((err)=> console.log('error: ', err));
+    this.namesService.getNames(splitted).catch((err) => console.log('error: ', err));
   }
 }

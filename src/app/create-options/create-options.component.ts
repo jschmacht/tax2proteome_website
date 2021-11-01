@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserInputService} from "../user-input.service";
 import {NamesService} from "../names.service";
-import {TaxTableComponent} from "../tax-table/tax-table.component";
-import {TaxIDData} from "../user-input.service";
+import {TaxTableComponent} from '../tax-table/tax-table.component';
+import {TaxIDData} from '../user-input.service';
 
 @Component({
     selector: 'app-create-options',
@@ -12,7 +12,7 @@ import {TaxIDData} from "../user-input.service";
 export class CreateOptionsComponent implements OnInit {
 
     constructor(
-        public UserInputService: UserInputService,
+        public UserInService: UserInputService,
         private taxTable: TaxTableComponent,
         private namesService: NamesService
     ) {
@@ -21,50 +21,62 @@ export class CreateOptionsComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    // if rank is changed, keep taxIDs but show taxIDs for selected rank
+    // if rank is changed, keep selected taxIDs but show taxIDs for selected rank
     async find_taxids(event) {
-        this.UserInputService.rankedTaxa = []
-        let withParentID: TaxIDData[] = []
-        let entry: TaxIDData;
+        this.UserInService.rankedTaxa = [];
         if (event.isUserInput) {
-            let rank = event.source.value;
-            if (rank == 'species') {
-                this.taxTable.refreshTable(this.UserInputService.selectedTaxa)
+            const rank = event.source.value;
+            if (rank === 'species') {
+                this.taxTable.refreshTable(this.UserInService.selectedTaxa);
             } else {
-                for (let taxon of this.UserInputService.selectedTaxa) {
-                    let taxiddata = await this.namesService.getIDs([taxon.taxid])
-                    let taxonNew = taxiddata[0]
-                    while (taxonNew.rank == 'no rank') {
-                        let receive_data = await this.namesService.getIDs([taxonNew.parentid])
-                        taxonNew = receive_data[0]
+                for (const taxon of this.UserInService.selectedTaxa) {
+                    const taxiddata = await this.namesService.getIDs([taxon.taxid]);
+                    let taxonNew = taxiddata[0];
+                    // get parent ID until rank not 'no rank'
+                    while (taxonNew.rank === 'no rank') {
+                        const receiveData = await this.namesService.getIDs([taxonNew.parentid]);
+                        taxonNew = receiveData[0];
+                        if (taxonNew.taxid === 1){
+                            taxonNew.rank = 'root';
+                            console.log('Root reached');
+                        }
                     }
-                    if (this.UserInputService.order.indexOf(taxonNew.rank) > this.UserInputService.order.indexOf(rank)) {
-                        this.UserInputService.rankedTaxa.push(taxiddata[0])
-                    } else if (this.UserInputService.order.indexOf(taxonNew.rank) == this.UserInputService.order.indexOf(rank)) {
-                        this.UserInputService.rankedTaxa.push(taxonNew)
+                    // if rank > user selected rank: ranked taxa = user input taxa
+                    if (this.UserInService.order.indexOf(taxonNew.rank) > this.UserInService.order.indexOf(rank)) {
+                        this.UserInService.rankedTaxa.push(taxiddata[0]);
+                    // if rank == selected rank, taxID = user input taxa
+                    } else if (this.UserInService.order.indexOf(taxonNew.rank) === this.UserInService.order.indexOf(rank)) {
+                        this.UserInService.rankedTaxa.push(taxonNew);
+                    // if rank < selected rank find next taxid with specified level
                     } else {
-                        let last_taxon_with_specified_level: TaxIDData
-                        while (this.UserInputService.order.indexOf(taxonNew.rank) < this.UserInputService.order.indexOf(rank)) {
-                            if (taxonNew.rank != 'no rank') {
-                                last_taxon_with_specified_level = taxonNew
+                        let lastTaxonWithSpecifiedLevel = taxonNew;
+                        while (this.UserInService.order.indexOf(taxonNew.rank) < this.UserInService.order.indexOf(rank)) {
+                            if (taxonNew.taxid === 1){
+                                taxonNew.rank = 'root';
+                                console.log('Root reached');
                             }
-                            let receive_data = await this.namesService.getIDs([taxonNew.parentid])
-                            taxonNew = receive_data[0]
-                        }
-                        if (this.UserInputService.order.indexOf(taxonNew.rank) == this.UserInputService.order.indexOf(rank)) {
-                            this.UserInputService.rankedTaxa.push(taxonNew)
-                        }
-                        if (this.UserInputService.order.indexOf(taxonNew.rank) > this.UserInputService.order.indexOf(rank)) {
-                            if (last_taxon_with_specified_level) {
-                                this.UserInputService.rankedTaxa.push(last_taxon_with_specified_level)
-                            } else {
-                                this.UserInputService.rankedTaxa.push(taxonNew)
+                            else if (taxonNew.rank !== 'no rank') {
+                                lastTaxonWithSpecifiedLevel = taxonNew;
+                                const receiveData = await this.namesService.getIDs([taxonNew.parentid]);
+                                taxonNew = receiveData[0];
                             }
+                            else {
+                                const receiveData = await this.namesService.getIDs([taxonNew.parentid]);
+                                taxonNew = receiveData[0];
+                            }
+                        }
+                        // new taxon has specified rank
+                        if (this.UserInService.order.indexOf(taxonNew.rank) === this.UserInService.order.indexOf(rank)) {
+                            this.UserInService.rankedTaxa.push(taxonNew);
+                        }
+                        // new taxon has rank > specified rank (or root), push last specified
+                        if (this.UserInService.order.indexOf(taxonNew.rank) > this.UserInService.order.indexOf(rank)) {
+                            this.UserInService.rankedTaxa.push(lastTaxonWithSpecifiedLevel);
                         }
                     }
                 }
-                this.UserInputService.set_to_set()
-                this.taxTable.refreshTable(this.UserInputService.rankedTaxa)
+                this.UserInService.set_to_set();
+                this.taxTable.refreshTable(this.UserInService.rankedTaxa);
             }
         }
     }

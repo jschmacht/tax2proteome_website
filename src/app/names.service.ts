@@ -3,28 +3,28 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
-import { HttpParams } from "@angular/common/http";
+import { HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/retry';
-import {UserInputService} from "./user-input.service";
-import {TaxTableComponent} from "./tax-table/tax-table.component";
-import {TaxData} from "./user-input.service";
-import {TaxIDData} from "./user-input.service";
-import {Router} from "@angular/router";
+import {UserInputService} from './user-input.service';
+import {TaxTableComponent} from './tax-table/tax-table.component';
+import {TaxData} from './user-input.service';
+import {TaxIDData} from './user-input.service';
+import {Router} from '@angular/router';
 
-//communication with taxid database
+// communication with taxid database
+// get taxa names --> call add_taxa() in user-input.service (update table, but this do not work)
+// or parent taxa IDs
 @Injectable()
 export class NamesService {
 
   // db_result: 172.16.103.175
-  private baseUrl = "https://tax2proteome.de/api/mquery.php"
-  //private baseUrl = "http://autocomplete.tax2proteome.de/mquery.php";
-  //private baseUrl = "http://localhost:8000/tax2proteome/rest_tax2proteome/mquery.php"
-  private Url2 = "https://tax2proteome.de/api/pquery.php"
-  //private Url2 = "http://autocomplete.tax2proteome.de/pquery.php";
-  //private Url2 = "http://localhost:8000/rest_tax2proteome/pquery.php"
+  private baseUrl = 'https://tax2proteome.de/api/mquery.php';
+  // private baseUrl = "http://localhost:8000/tax2proteome/rest_tax2proteome/mquery.php"
+  private Url2 = 'https://tax2proteome.de/api/pquery.php';
+  // private Url2 = "http://localhost:8000/rest_tax2proteome/pquery.php"
 
   constructor(
     private http: HttpClient,
@@ -41,22 +41,22 @@ export class NamesService {
           .retry(3)
           .catch((err: any) => {
               return throwError('An error occurred in fetchNames:', err.error.message);
-          })
+          });
   }
   async getNames(taxids: number[]){
       try {
-          let receivedData = await this.fetchNames(taxids).toPromise();
-          let receivedData2 = <TaxData[]>receivedData;
+          const receivedData = await this.fetchNames(taxids).toPromise();
+          const receivedData2 = receivedData as TaxData[];
           receivedData2.forEach((entry) => {
-              entry.name = entry.name.replace(/ *\(taxid:[^)]*\)*/g, "");
+              entry.name = entry.name.replace(/ *\(taxid:[^)]*\)*/g, '');
               this.userInputService.addTaxa(entry);
               return(entry);
           });
-          this.taxTable.refreshTable(this.userInputService.selectedTaxa)
+          this.taxTable.refreshTable(this.userInputService.selectedTaxa);
       }
-      catch(e){
-          console.log('error: ', e)
-          //handle exception
+      catch (e){
+          console.log('error: ', e);
+          // handle exception
       }
   }
   fetchParentIDs<T>(taxids: number[]): Observable<T> {
@@ -67,22 +67,22 @@ export class NamesService {
           .retry(3)
           .catch((err: any) => {
               return throwError('An error occurred in fetch IDs:', err.error.message);
-            })
+            });
   }
 
   async getIDs(taxids: number[]): Promise<TaxIDData[]>{
       try{
-          let receivedData = await this.fetchParentIDs(taxids).toPromise();
-          let receivedData2 = <TaxIDData[]>receivedData;
+          const receivedData = await this.fetchParentIDs(taxids).toPromise();
+          const receivedData2 = receivedData as TaxIDData[];
           receivedData2.forEach((entry) => {
-              entry.name = entry.name.replace(/ *\(taxid:[^)]*\)*/g, "");
+              entry.name = entry.name.replace(/ *\(taxid:[^)]*\)*/g, '');
 
           });
           return receivedData2;
       }
-      catch(e){
-          console.log('error: ', e)
-          //handle exception
+      catch (e){
+          console.log('error: ', e);
+          // handle exception
       }
   }
 

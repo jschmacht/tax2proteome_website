@@ -3,9 +3,9 @@
         <div>
             <mat-form-field>
                 <mat-label>Source</mat-label>
-                <mat-select [(ngModel)]="this.UserInputService.selectedDatabase">
+                <mat-select [(ngModel)]="this.UserInService.selectedDatabase">
                     <mat-option value="option"
-                                *ngFor="let database of this.UserInputService.databases"
+                                *ngFor="let database of this.UserInService.databases"
                                 [value]="database">
                         {{database}}
                     </mat-option>
@@ -18,9 +18,9 @@
             <mat-form-field>
                 <mat-label>Rank</mat-label>
                 <mat-select
-                        [(ngModel)]="this.UserInputService.selectedRank">
+                        [(ngModel)]="this.UserInService.selectedRank">
                     <mat-option value="option"
-                                *ngFor="let rank of this.UserInputService.ranks"
+                                *ngFor="let rank of this.UserInService.ranks"
                                 [value]="rank"
                                 (onSelectionChange)="find_taxids($event)" >
                         {{rank}}
@@ -31,13 +31,13 @@
     </mat-grid-tile>
     <mat-grid-tile>
         <div>
-            <div *ngIf="this.UserInputService.selectedDatabase=='NCBI-nr'; then thenBlock else elseBlock"></div>
+            <div *ngIf="this.UserInService.selectedDatabase=='NCBI-nr'; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
                 <mat-form-field>
                     <mat-label>Type</mat-label>
-                    <mat-select [(ngModel)]="this.UserInputService.selectedHeader">
+                    <mat-select [(ngModel)]="this.UserInService.selectedHeader">
                         <mat-option value="option"
-                                    *ngFor="let option of this.UserInputService.header_options" [value]="option">
+                                    *ngFor="let option of this.UserInService.headerOptions" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-select>
@@ -46,9 +46,9 @@
             <ng-template #elseBlock>
                 <mat-form-field>
                     <mat-label>Type</mat-label>
-                    <mat-select [(ngModel)]="this.UserInputService.selectedRedundant">
+                    <mat-select [(ngModel)]="this.UserInService.selectedRedundant">
                         <mat-option value="option"
-                                    *ngFor="let option of this.UserInputService.redundant_options" [value]="option">
+                                    *ngFor="let option of this.UserInService.redundantOptions" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-select>

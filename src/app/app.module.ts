@@ -5,10 +5,10 @@ import {AppRouting} from './app.routing';
 import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 
-//Angular Material Components
+// Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-//import {MatCheckboxModule} from '@angular/material';
-//import {MatButtonModule} from '@angular/material';
+// import {MatCheckboxModule} from '@angular/material';
+// import {MatButtonModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -40,9 +40,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
-import {MatButtonModule} from "@angular/material/button";
-import {NamesService} from "./names.service";
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonModule} from '@angular/material/button';
+import {NamesService} from './names.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ImpressComponent } from './impress/impress.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -55,7 +55,7 @@ import { ListInputComponent } from './list-input/list-input.component';
 import { CreateOptionsComponent } from './create-options/create-options.component';
 import { FaqComponent } from './faq/faq.component';
 import { ExampleComponent } from './example/example.component';
-import {UserInputService} from "./user-input.service";
+import {UserInputService} from './user-input.service';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -89,8 +89,8 @@ import {routing} from './app.routing';
         AppRouting,
         RouterModule,
         BrowserAnimationsModule,
-        //MatCheckboxModule,
-        //MatButtonModule,
+        // MatCheckboxModule,
+        // MatButtonModule,
         MatInputModule,
         MatAutocompleteModule,
         MatDatepickerModule,
