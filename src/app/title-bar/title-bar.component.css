@@ -5,8 +5,21 @@
   letter-spacing: 0.005em;
   font-weight: 400;
   width: 100%;
-  height: 64px;
-  max-height: 64px;
+  height: 84px;
+  max-height: 84px;
   padding: 0 16px;
   margin: 0;
+}
+.gap {
+  margin: 0 6px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+img {
+  vertical-align: middle;
+  width: 32px;
+  border-radius: 50%;
 }
