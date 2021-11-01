@@ -1,0 +1,59 @@
+<mat-grid-list cols="3" rowHeight='100px'>
+    <mat-grid-tile>
+        <div>
+            <mat-form-field>
+                <mat-label>Source</mat-label>
+                <mat-select [(ngModel)]="this.UserInputService.selectedDatabase">
+                    <mat-option value="option"
+                                *ngFor="let database of this.UserInputService.databases"
+                                [value]="database">
+                        {{database}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div>
+            <mat-form-field>
+                <mat-label>Rank</mat-label>
+                <mat-select
+                        [(ngModel)]="this.UserInputService.selectedRank">
+                    <mat-option value="option"
+                                *ngFor="let rank of this.UserInputService.ranks"
+                                [value]="rank"
+                                (onSelectionChange)="find_taxids($event)" >
+                        {{rank}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div>
+            <div *ngIf="this.UserInputService.selectedDatabase=='NCBI-nr'; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="this.UserInputService.selectedHeader">
+                        <mat-option value="option"
+                                    *ngFor="let option of this.UserInputService.header_options" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-template>
+            <ng-template #elseBlock>
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="this.UserInputService.selectedRedundant">
+                        <mat-option value="option"
+                                    *ngFor="let option of this.UserInputService.redundant_options" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-template>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
