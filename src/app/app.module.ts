@@ -37,9 +37,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {NamesService} from './names.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -55,6 +55,10 @@ import { ListInputComponent } from './list-input/list-input.component';
 import { CreateOptionsComponent } from './create-options/create-options.component';
 import { FaqComponent } from './faq/faq.component';
 import { ExampleComponent } from './example/example.component';
+import {TermsOfServicePageComponent} from './terms-of-service-page/terms-of-service-page.component';
+import {PrivacyConsentBannerComponent} from './privacy-consent-banner/privacy-consent-banner.component';
+import {PrivacyPolicyPageComponent} from './privacy-policy-page/privacy-policy-page.component';
+import {FooterComponent} from './footer/page-footer';
 import {UserInputService} from './user-input.service';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -63,6 +67,7 @@ import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { faUpload} from '@fortawesome/free-solid-svg-icons';
 import { ResultPageComponent } from './result-page/result-page.component';
 import {routing} from './app.routing';
+
 
 
 @NgModule({
@@ -80,7 +85,11 @@ import {routing} from './app.routing';
     CreateOptionsComponent,
     FaqComponent,
     ExampleComponent,
-    ResultPageComponent
+    ResultPageComponent,
+    TermsOfServicePageComponent,
+    PrivacyConsentBannerComponent,
+    PrivacyPolicyPageComponent,
+    FooterComponent,
   ],
     imports: [
         HttpClientModule,
