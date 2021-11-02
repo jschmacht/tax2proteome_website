@@ -1,7 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {TaxTableComponent} from '../tax-table/tax-table.component';
 import {NamesService} from '../names.service';
-
 
 @Component({
   selector: 'app-list-input',
@@ -13,7 +11,6 @@ export class ListInputComponent implements OnInit {
   @ViewChild('bindingInput') bindingInput: ElementRef;
 
   constructor(
-      private taxTable: TaxTableComponent,
       private namesService: NamesService,
   ) { }
 

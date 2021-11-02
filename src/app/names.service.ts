@@ -1,18 +1,10 @@
-import {Injectable, ViewChild} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import 'rxjs/add/operator/map';
 import { HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/retry';
-import {UserInputService} from './user-input.service';
-import {TaxTableComponent} from './tax-table/tax-table.component';
-import {TaxData} from './user-input.service';
-import {TaxIDData} from './user-input.service';
-import {Router} from '@angular/router';
+import {UserInputService, TaxData, TaxIDData} from './user-input.service';
 
 // communication with taxid database
 // get taxa names --> call add_taxa() in user-input.service (update table, but this do not work)
@@ -28,7 +20,6 @@ export class NamesService {
 
   constructor(
     private http: HttpClient,
-    private taxTable: TaxTableComponent,
     private userInputService: UserInputService,
   ) { }
 

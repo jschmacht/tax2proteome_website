@@ -1,9 +1,8 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable, of, Subject} from 'rxjs';
 
 // tax data objects, and other options, tax level order
-// taxa to set, get and add taxa
+// ranked taxa to set, add taxa, send taxa emitter to table (in add_taxa and set_to_set)
 
 export interface TaxData {
   taxid: number;
@@ -23,8 +22,8 @@ export interface TaxIDData {
 })
 export class UserInputService {
   myControl = new FormControl();
-  selectedTaxa: TaxData[] = [];
   // selectedTaxa:TaxData[] = [{ taxid: 22, name: "zwei", rank: "no rank" }];
+  selectedTaxa: TaxData[] = [];
   rankedTaxa: TaxIDData[] = [];
   // if rank selected, taxa in table differ from selected taxa
   shownTaxa: TaxData[] = [];
@@ -55,7 +54,6 @@ export class UserInputService {
   constructor() {
   }
 
-
   sendTaxa() {
     this.taxaEmitter.emit(this.shownTaxa);
   }
@@ -72,7 +70,7 @@ export class UserInputService {
     }
 
   set_to_set(): void {
-    let taxa = this.rankedTaxa;
+    const taxa = this.rankedTaxa;
     this.rankedTaxa = [];
     for (const taxon of taxa) {
       // no duplicates

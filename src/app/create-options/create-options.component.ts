@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserInputService} from "../user-input.service";
-import {NamesService} from "../names.service";
-import {TaxTableComponent} from '../tax-table/tax-table.component';
-import {TaxIDData} from '../user-input.service';
+import {UserInputService} from '../user-input.service';
+import {NamesService} from '../names.service';
 
 @Component({
     selector: 'app-create-options',
@@ -13,7 +11,6 @@ export class CreateOptionsComponent implements OnInit {
 
     constructor(
         public UserInService: UserInputService,
-        private taxTable: TaxTableComponent,
         private namesService: NamesService
     ) {
     }
@@ -81,9 +78,5 @@ export class CreateOptionsComponent implements OnInit {
                 this.UserInService.sendTaxa();
             }
         }
-    }
-
-    delay(ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }

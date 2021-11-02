@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {TaxTableComponent} from '../tax-table/tax-table.component';
-import {TaxData, UserInputService} from '../user-input.service';
 import {NamesService} from '../names.service';
 
 @Component({
@@ -13,7 +11,6 @@ export class FileInputComponent implements OnInit {
   fileName = 'No file selected';
 
   constructor(
-      private taxTable: TaxTableComponent,
       private namesService: NamesService,
   ) { }
 
@@ -40,7 +37,7 @@ export class FileInputComponent implements OnInit {
         const text = reader.result;
         if (typeof text === 'string') {
           const textList = text.split(/,|\n|\t/).map(Number).filter(Boolean);
-          let taxObject = this.namesService.getNames(textList).catch((err) => console.log('error: ', err));
+          const taxObject = this.namesService.getNames(textList).catch((err) => console.log('error: ', err));
         }
       };
     }

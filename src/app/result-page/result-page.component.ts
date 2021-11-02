@@ -9,13 +9,13 @@ import {ConfigService} from '../config.service';
 export class ResultPageComponent implements OnInit {
   dbId: string;
   status = '';
-  ready: boolean = false;
+  ready = false;
   resultUrl = 'https://tax2proteome.de/downloader/';
 
   @ViewChild('bindingInput') bindingInput: ElementRef;
 
   constructor(
-      private configService: ConfigService,) {
+      private configService: ConfigService, ) {
   }
 
   ngOnInit(): void {

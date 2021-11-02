@@ -1,4 +1,4 @@
-<mat-button-toggle-group id="create-menu-bar" name="fontStyle" aria-label="Font Style" [(value)]="active_bttn">
+<mat-button-toggle-group id="create-menu-bar" name="fontStyle" aria-label="Font Style" [(value)]="activeButton">
     <mat-button-toggle class=button_style id = "0" value="power_input" (click)="highlight(0)" matTooltip="provide
     taxon name or ID" matTooltipPosition="above">
         <mat-icon id="01">font_download</mat-icon>
@@ -23,19 +23,19 @@
     </mat-button-toggle>
 </mat-button-toggle-group>
 <div class="input_area">
-    <ng-container *ngIf="active_bttn==='power_input'">
+    <ng-container *ngIf="activeButton==='power_input'">
         <app-power-input (messageEvent)="receiveTaxEntry($event)"></app-power-input>
     </ng-container>
 
-    <ng-container *ngIf="active_bttn==='list_input'">
+    <ng-container *ngIf="activeButton==='list_input'">
         <app-list-input></app-list-input>
     </ng-container>
 
-    <ng-container *ngIf="active_bttn==='file_input'">
+    <ng-container *ngIf="activeButton==='file_input'">
         <app-file-input></app-file-input>
     </ng-container>
 
-    <ng-container *ngIf="active_bttn==='options'">
+    <ng-container *ngIf="activeButton==='options'">
         <app-create-options></app-create-options>
     </ng-container>
 </div>

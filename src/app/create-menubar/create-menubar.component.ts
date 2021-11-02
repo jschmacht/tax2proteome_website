@@ -1,10 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserInputService} from '../user-input.service';
-import {TaxTableComponent} from '../tax-table/tax-table.component';
 import {PowerInputComponent} from '../power-input/power-input.component';
 import {TaxData} from '../user-input.service';
 import {ConfigService} from '../config.service';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import {NavBarComponent} from '../nav-bar/nav-bar.component';
 
 
@@ -15,22 +14,21 @@ import {NavBarComponent} from '../nav-bar/nav-bar.component';
 })
 
 export class CreateMenubarComponent implements OnInit {
-  active_bttn: string;
+  activeButton: string;
   buttonClicked = null;
   iconClicked = null;
   taxon: TaxData;
   @ViewChild(PowerInputComponent) powerInput;
 
   constructor(
-      private taxTable: TaxTableComponent,
       public UserInService: UserInputService,
       private configService: ConfigService,
-      private router: Router,
-      private navBar: NavBarComponent
+      private navBar: NavBarComponent,
+      // private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.active_bttn = 'power_input';
+    this.activeButton = 'power_input';
     this.highlight('0');
   }
   // button highlight
