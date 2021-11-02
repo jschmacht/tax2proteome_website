@@ -51,7 +51,6 @@ export class CreateMenubarComponent implements OnInit {
     this.taxon = $event;
     this.taxon.name = this.taxon.name.replace(/ *\(taxid:[^)]*\)*/g, '');
     this.UserInService.addTaxa(this.taxon);
-    this.taxTable.refreshTable(this.UserInService.selectedTaxa);
   }
 
   // get all user input data from UserInputService

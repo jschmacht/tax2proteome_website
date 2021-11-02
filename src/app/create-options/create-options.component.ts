@@ -27,7 +27,8 @@ export class CreateOptionsComponent implements OnInit {
         if (event.isUserInput) {
             const rank = event.source.value;
             if (rank === 'species') {
-                this.taxTable.refreshTable(this.UserInService.selectedTaxa);
+                this.UserInService.shownTaxa = this.UserInService.selectedTaxa;
+                this.UserInService.sendTaxa();
             } else {
                 for (const taxon of this.UserInService.selectedTaxa) {
                     const taxiddata = await this.namesService.getIDs([taxon.taxid]);
@@ -76,7 +77,8 @@ export class CreateOptionsComponent implements OnInit {
                     }
                 }
                 this.UserInService.set_to_set();
-                this.taxTable.refreshTable(this.UserInService.rankedTaxa);
+                this.UserInService.shownTaxa = this.UserInService.rankedTaxa;
+                this.UserInService.sendTaxa();
             }
         }
     }

@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable, Subject} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 
 // tax data objects, and other options, tax level order
 // taxa to set, get and add taxa
@@ -28,6 +28,7 @@ export class UserInputService {
   rankedTaxa: TaxIDData[] = [];
   // if rank selected, taxa in table differ from selected taxa
   shownTaxa: TaxData[] = [];
+  taxaEmitter = new EventEmitter<TaxData[]>();
   selectedDatabase = 'Uniprot';
   selectedRank = 'species';
   selectedHeader = 'reduced headers';
@@ -55,6 +56,10 @@ export class UserInputService {
   }
 
 
+  sendTaxa() {
+    this.taxaEmitter.emit(this.shownTaxa);
+  }
+
   addTaxa(taxObject: TaxData): void {
     // no duplicates
     if (this.selectedTaxa.map(a => a.taxid).indexOf(taxObject.taxid) === -1)
@@ -62,6 +67,8 @@ export class UserInputService {
       this.selectedTaxa.push(taxObject);
     }
     this.myControl.setValue('');
+    this.shownTaxa = this.selectedTaxa;
+    this.sendTaxa();
     }
 
   set_to_set(): void {
@@ -74,6 +81,8 @@ export class UserInputService {
         this.rankedTaxa.push(taxon);
       }
       this.myControl.setValue('');
+      this.shownTaxa = this.rankedTaxa;
+      this.sendTaxa();
     }
   }
 }

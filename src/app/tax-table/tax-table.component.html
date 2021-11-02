@@ -1,6 +1,3 @@
-<div>
-    <button mat-raised-button class="button" (click)="actualize_table()">Refresh Table</button>
-</div>
 <div *ngIf="displayTaxTable">
     <table mat-table [dataSource]="dataSource" *ngIf="dataSource" matSort class="container_table mat-elevation-z8">
         <!-- TaxID Column -->

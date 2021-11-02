@@ -52,7 +52,6 @@ export class NamesService {
               this.userInputService.addTaxa(entry);
               return(entry);
           });
-          this.taxTable.refreshTable(this.userInputService.selectedTaxa);
       }
       catch (e){
           console.log('error: ', e);
