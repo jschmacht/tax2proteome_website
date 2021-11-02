@@ -26,7 +26,7 @@ export class PrivacyConsentBannerComponent implements OnInit, AfterViewInit{
 
   consentDialogStatus = 'initial';
   // 30
-  expiryDays = 0;
+  expiryDays = 30;
 
   constructor() {
   }
