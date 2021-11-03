@@ -94,6 +94,10 @@ import {routing} from './app.routing';
     imports: [
         HttpClientModule,
         BrowserModule,
+        RouterModule.forRoot([
+            {path: 'privacypolicy', component: PrivacyPolicyPageComponent},
+            {path: 'termsofservice', component: TermsOfServicePageComponent}
+        ]),
         routing,
         AppRouting,
         RouterModule,
