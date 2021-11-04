@@ -1,14 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {AppRouting} from './app.routing';
 import {RouterModule} from '@angular/router';
+
+import {Routing} from './app.routing';
 import {AppComponent} from './app.component';
 
 // Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import {MatCheckboxModule} from '@angular/material';
-// import {MatButtonModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -66,8 +64,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { faUpload} from '@fortawesome/free-solid-svg-icons';
 import { ResultPageComponent } from './result-page/result-page.component';
-import {routing} from './app.routing';
-
 
 
 @NgModule({
@@ -94,16 +90,9 @@ import {routing} from './app.routing';
     imports: [
         HttpClientModule,
         BrowserModule,
-        RouterModule.forRoot([
-            {path: 'privacypolicy', component: PrivacyPolicyPageComponent},
-            {path: 'termsofservice', component: TermsOfServicePageComponent}
-        ]),
-        routing,
-        AppRouting,
+        Routing,
         RouterModule,
         BrowserAnimationsModule,
-        // MatCheckboxModule,
-        // MatButtonModule,
         MatInputModule,
         MatAutocompleteModule,
         MatDatepickerModule,
