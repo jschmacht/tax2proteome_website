@@ -2,7 +2,10 @@
   <div class="policy-consent">
       <span>
         This website uses only functional cookies for an optimal user experience. By using our website, you acknowledge that you have
-        read, understood and agree to our <a href="/termsofservice">Terms of Use</a> and <a href="/privacypolicy">Privacy Policy</a>.
+        read, understood and agree to our
+          <a [routerLink]="'/termsofservice'">Terms of Use</a>
+          and
+          <a [routerLink]="'/privacypolicy'">Privacy Policy</a>.
       </span>
     <span>
         <button mat-flat-button class="cc-allow" (click)="consent()">Accept</button>

@@ -7,18 +7,18 @@ import {ImpressComponent} from './impress/impress.component';
 import {HomeComponent} from './home/home.component'
 
 
-export const appRoutes: Routes = [
+const routes: Routes = [
     { path: 'termsofservice', component: TermsOfServicePageComponent},
     { path: 'privacypolicy', component: PrivacyPolicyPageComponent},
     { path: 'impressum', component: ImpressComponent},
     { path: '**', component: HomeComponent },
 ];
 //export const Routing = RouterModule.forRoot(appRoutes);
-export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(appRoutes);
-/*
+//export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(appRoutes);
+
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRouting { }
-*/
+

@@ -1,8 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {Routing} from './app.routing';
-
+import {AppRouting} from './app.routing';
 import {AppComponent} from './app.component';
 
 // Angular Material Components
@@ -90,7 +88,7 @@ import { HomeComponent } from './home/home.component';
     imports: [
         HttpClientModule,
         BrowserModule,
-        Routing,
+        AppRouting,
         BrowserAnimationsModule,
         MatInputModule,
         MatAutocompleteModule,
