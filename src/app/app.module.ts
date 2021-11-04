@@ -1,14 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppRouting} from './app.routing';
-import {RouterModule} from '@angular/router';
+import {Routing} from './app.routing';
+
 import {AppComponent} from './app.component';
 
 // Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import {MatCheckboxModule} from '@angular/material';
-// import {MatButtonModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -46,7 +44,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ImpressComponent } from './impress/impress.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { CreateComponent } from './create/create.component';
 import { TaxTableComponent } from './tax-table/tax-table.component';
 import { CreateMenubarComponent } from './create-menubar/create-menubar.component';
 import { PowerInputComponent } from './power-input/power-input.component';
@@ -66,8 +63,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { faUpload} from '@fortawesome/free-solid-svg-icons';
 import { ResultPageComponent } from './result-page/result-page.component';
-import {routing} from './app.routing';
-
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -76,7 +72,6 @@ import {routing} from './app.routing';
     ImpressComponent,
     TitleBarComponent,
     NavBarComponent,
-    CreateComponent,
     TaxTableComponent,
     CreateMenubarComponent,
     PowerInputComponent,
@@ -90,20 +85,13 @@ import {routing} from './app.routing';
     PrivacyConsentBannerComponent,
     PrivacyPolicyPageComponent,
     FooterComponent,
+    HomeComponent,
   ],
     imports: [
         HttpClientModule,
         BrowserModule,
-        RouterModule.forRoot([
-            {path: 'privacypolicy', component: PrivacyPolicyPageComponent},
-            {path: 'termsofservice', component: TermsOfServicePageComponent}
-        ]),
-        routing,
-        AppRouting,
-        RouterModule,
+        Routing,
         BrowserAnimationsModule,
-        // MatCheckboxModule,
-        // MatButtonModule,
         MatInputModule,
         MatAutocompleteModule,
         MatDatepickerModule,
