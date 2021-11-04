@@ -1,8 +1,11 @@
-<div class="container">
-  <app-title-bar></app-title-bar>
-  <div class="gap-20"></div>
-  <app-privacy-consent-banner></app-privacy-consent-banner>
-  <app-nav-bar></app-nav-bar>
+<div class="content-container">
+  <div class="menu-container sticky-top mb-5">
+    <app-title-bar></app-title-bar>
+
+    <app-privacy-consent-banner></app-privacy-consent-banner>
+    <div class="gap-20"></div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
 <router-outlet></router-outlet>
 <div class="footer-container">

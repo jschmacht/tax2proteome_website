@@ -1,8 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
 
 import {Routing} from './app.routing';
+
 import {AppComponent} from './app.component';
 
 // Angular Material Components
@@ -44,7 +44,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ImpressComponent } from './impress/impress.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { CreateComponent } from './create/create.component';
 import { TaxTableComponent } from './tax-table/tax-table.component';
 import { CreateMenubarComponent } from './create-menubar/create-menubar.component';
 import { PowerInputComponent } from './power-input/power-input.component';
@@ -64,6 +63,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { faUpload} from '@fortawesome/free-solid-svg-icons';
 import { ResultPageComponent } from './result-page/result-page.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -72,7 +72,6 @@ import { ResultPageComponent } from './result-page/result-page.component';
     ImpressComponent,
     TitleBarComponent,
     NavBarComponent,
-    CreateComponent,
     TaxTableComponent,
     CreateMenubarComponent,
     PowerInputComponent,
@@ -86,12 +85,12 @@ import { ResultPageComponent } from './result-page/result-page.component';
     PrivacyConsentBannerComponent,
     PrivacyPolicyPageComponent,
     FooterComponent,
+    HomeComponent,
   ],
     imports: [
         HttpClientModule,
         BrowserModule,
         Routing,
-        RouterModule,
         BrowserAnimationsModule,
         MatInputModule,
         MatAutocompleteModule,
